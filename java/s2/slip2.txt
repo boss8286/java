@@ -1,0 +1,55 @@
+package slip2;
+
+import java.util.*;
+
+class patient {
+    String name;
+    int age;
+    int olevel; // Oxygen level
+    int hrtc;   // Heart rate
+
+    public patient(String name, int age, int olevel, int hrtc) {
+        this.name = name;
+        this.age = age;
+        this.olevel = olevel;
+        this.hrtc = hrtc;
+    }
+
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        System.out.println("How many patients?");
+        int n = sc.nextInt();
+        patient p[] = new patient[n];
+
+        for (int i = 0; i < n; i++) {
+            System.out.println("Enter name:");
+            String name = sc.next();
+            System.out.println("Enter age:");
+            int age = sc.nextInt();
+            System.out.println("Enter oxygen level:");
+            int olevel = sc.nextInt();
+            System.out.println("Enter heart rate (HRTC):");
+            int hrtc = sc.nextInt();
+            p[i] = new patient(name, age, olevel, hrtc);
+        }
+
+        for (int i = 0; i < n; i++) {
+            if (p[i].olevel < 95 && p[i].hrtc > 10) {
+                try {
+                    throw new NullPointerException("Patient is COVID positive");
+                } catch (Exception e) {
+                    System.out.println(p[i].name + " is COVID positive and needs to be hospitalized.");
+                }
+            } else {
+                System.out.println("The details of the patient are:");
+                System.out.println(" Name: " + p[i].name);
+                System.out.println(" Age: " + p[i].age);
+                System.out.println(" Oxygen level: " + p[i].olevel);
+                System.out.println(" Heart rate (HRTC): " + p[i].hrtc);
+                System.out.println();
+            }
+        }
+
+        sc.close(); // Close the scanner to prevent resource leaks
+    }
+}

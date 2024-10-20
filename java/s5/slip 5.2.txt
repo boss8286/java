@@ -1,0 +1,85 @@
+slip 5.2
+abstract class Order {
+    protected int id;
+    protected String description;
+
+    public Order(int id, String description) {
+        this.id = id;
+        this.description = description;
+    }
+
+    public void display() {
+        System.out.println("Order ID: " + id);
+        System.out.println("Description: " + description);
+    }
+
+    public abstract void accept();
+}
+
+class PurchaseOrder extends Order {
+    private String vendorName;
+
+    public PurchaseOrder(int id, String description, String vendorName) {
+        super(id, description);
+        this.vendorName = vendorName;
+    }
+
+    public void accept() {
+        System.out.println("Purchase Order Accepted");
+    }
+
+    public void display() {
+        super.display();
+        System.out.println("Vendor Name: " + vendorName);
+    }
+}
+
+class SalesOrder extends Order {
+    private String customerName;
+
+    public SalesOrder(int id, String description, String customerName) {
+        super(id, description);
+        this.customerName = customerName;
+    }
+
+    public void accept() {
+        System.out.println("Sales Order Accepted");
+    }
+
+    public void display() {
+        super.display();
+        System.out.println("Customer Name: " + customerName);
+    }
+}
+
+public class OrderManagement {
+    public static void main(String[] args) {
+        PurchaseOrder po1 = new PurchaseOrder(101, "Laptop", "Dell");
+        PurchaseOrder po2 = new PurchaseOrder(102, "Desktop", "HP");
+        PurchaseOrder po3 = new PurchaseOrder(103, "Printer", "Canon");
+
+        SalesOrder so1 = new SalesOrder(201, "Mobile", "John Doe");
+        SalesOrder so2 = new SalesOrder(202, "Tablet", "Jane Smith");
+        SalesOrder so3 = new SalesOrder(203, "Smartwatch", "Bob Johnson");
+
+        System.out.println("Purchase Orders:");
+        po1.accept();
+        po1.display();
+        System.out.println();
+        po2.accept();
+        po2.display();
+        System.out.println();
+        po3.accept();
+        po3.display();
+
+        System.out.println("\nSales Orders:");
+        so1.accept();
+        so1.display();
+        System.out.println();
+        so2.accept();
+        so2.display();
+        System.out.println();
+        so3.accept();
+        so3.display();
+    }
+}

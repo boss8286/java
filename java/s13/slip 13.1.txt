@@ -1,0 +1,41 @@
+slip 13.1
+
+
+class NumberIsZeroException extends Exception {
+    public NumberIsZeroException(String message) {
+        super(message);
+    }
+}
+
+public class Main {
+    public static boolean isPrime(int num) {
+        if (num <= 1) {
+            return false;
+        }
+        for (int i = 2; i <= Math.sqrt(num); i++) {
+            if (num % i == 0) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    public static void main(String[] args) {
+        java.util.Scanner sc = new java.util.Scanner(System.in);
+        System.out.println("Enter a number:");
+        int num = sc.nextInt();
+
+        try {
+            if (num == 0) {
+                throw new NumberIsZeroException("Number is 0");
+            }
+            if (isPrime(num)) {
+                System.out.println(num + " is a prime number.");
+            } else {
+                System.out.println(num + " is not a prime number.");
+            }
+        } catch (NumberIsZeroException e) {
+            System.out.println(e.getMessage());
+        }
+    }
+}

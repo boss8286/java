@@ -1,0 +1,33 @@
+slip 5.1
+class Employee {
+    private int empId;
+    private String empName;
+    private String empDesignation;
+    private double empSal;
+
+    public Employee(int empId, String empName, String empDesignation, double empSal) {
+        this.empId = empId;
+        this.empName = empName;
+        this.empDesignation = empDesignation;
+        this.empSal = empSal;
+    }
+
+    @Override
+    public String toString() {
+        return "Employee ID: " + empId +
+               "\nEmployee Name: " + empName +
+               "\nDesignation: " + empDesignation +
+               "\nSalary: " + empSal;
+    }
+}
+
+public class EmployeeInfo {
+    public static void main(String[] args) {
+        Employee emp1 = new Employee(101, "Alice", "Software Engineer", 75000);
+        Employee emp2 = new Employee(102, "Bob", "Project Manager", 95000);
+        
+        System.out.println(emp1.toString());
+        System.out.println();
+        System.out.println(emp2.toString());
+    }
+}
